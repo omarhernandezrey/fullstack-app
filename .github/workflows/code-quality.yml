@@ -1,0 +1,40 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      
+      - name: Check backend structure
+        run: |
+          echo "Checking backend structure..."
+          test -f backend/package.json && echo "✓ Backend package.json found"
+          test -f backend/src/server.js && echo "✓ Backend server.js found"
+          test -f backend/Dockerfile && echo "✓ Backend Dockerfile found"
+      
+      - name: Check frontend structure
+        run: |
+          echo "Checking frontend structure..."
+          test -f frontend/package.json && echo "✓ Frontend package.json found"
+          test -f frontend/src/main.jsx && echo "✓ Frontend main.jsx found"
+          test -f frontend/Dockerfile && echo "✓ Frontend Dockerfile found"
+      
+      - name: Check Docker Compose
+        run: |
+          echo "Checking Docker configuration..."
+          test -f docker-compose.yml && echo "✓ docker-compose.yml found"
+          test -f .dockerignore && echo "✓ .dockerignore found"

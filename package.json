@@ -1,0 +1,21 @@
+{
+  "name": "fullstack-app",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Full Stack Application",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "dev:all": "npm run dev:frontend & npm run dev:backend",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "lint": "cd frontend && npm run lint && cd ../backend && npm run lint"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "devDependencies": {}
+}
